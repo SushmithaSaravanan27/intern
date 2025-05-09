@@ -1,0 +1,473 @@
+Package = payxpert
+Employee.java
+package payxpert;
+import java.time.LocalDate;
+public class Employee {
+private int employeeID;
+private String firstName;
+private String lastName;
+private LocalDate dateOfBirth;
+private String gender;
+private String email;
+private String phoneNumber;
+private String address;
+private String position;
+private LocalDate joiningDate;
+private LocalDate terminationDate;
+
+public Employee() {}
+public Employee(int employeeID, String firstName, String lastName, LocalDate dateOfBirth, String gender,
+String email, String phoneNumber, String address, String position, LocalDate joiningDate,
+LocalDate terminationDate) {
+this.employeeID = employeeID;
+this.firstName = firstName;
+this.lastName = lastName;
+this.dateOfBirth = dateOfBirth;
+this.gender = gender;
+this.email = email;
+this.phoneNumber = phoneNumber;
+this.address = address;
+this.position = position;
+this.joiningDate = joiningDate;
+this.terminationDate = terminationDate;
+}
+
+public int getEmployeeID() { return employeeID; }
+public void setEmployeeID(int employeeID) { this.employeeID = employeeID; }
+
+public String getFirstName() { return firstName; }
+public void setFirstName(String firstName) { this.firstName = firstName; }
+
+public String getLastName() { return lastName; }
+public void setLastName(String lastName) { this.lastName = lastName; }
+
+public LocalDate getDateOfBirth() { return dateOfBirth; }
+public void setDateOfBirth(LocalDate dateOfBirth) { this.dateOfBirth = dateOfBirth; }
+
+public String getGender() { return gender; }
+public void setGender(String gender) { this.gender = gender; }
+
+public String getEmail() { return email; }
+public void setEmail(String email) { this.email = email; }
+
+public String getPhoneNumber() { return phoneNumber; }
+public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+
+public String getAddress() { return address; }
+public void setAddress(String address) { this.address = address; }
+
+public String getPosition() { return position; }
+public void setPosition(String position) { this.position = position; }
+
+public LocalDate getJoiningDate() { return joiningDate; }
+public void setJoiningDate(LocalDate joiningDate) { this.joiningDate = joiningDate; }
+
+public LocalDate getTerminationDate() { return terminationDate; }
+public void setTerminationDate(LocalDate terminationDate) { this.terminationDate = terminationDate; }
+
+public int calculateAge() {
+if (dateOfBirth == null) return 0;
+LocalDate today = LocalDate.now();
+int age = today.getYear() - dateOfBirth.getYear();
+if (today.getMonthValue() < dateOfBirth.getMonthValue() ||
+(today.getMonthValue() == dateOfBirth.getMonthValue() && today.getDayOfMonth() < dateOfBirth.getDayOfMonth())) {
+age--;
+}
+return age;
+}
+}
+
+FinancialRecord.java
+
+package payxpert;
+import java.time.LocalDate;
+public class FinancialRecord {
+private int recordID;
+private int employeeID;
+private LocalDate recordDate;
+private String description;
+private double amount;
+private String recordType;
+
+public FinancialRecord() {}
+
+public FinancialRecord(int recordID, int employeeID, LocalDate recordDate, String description,
+double amount, String recordType) {
+this.recordID = recordID;
+this.employeeID = employeeID;
+this.recordDate = recordDate;
+this.description = description;
+this.amount = amount;
+this.recordType = recordType;
+}
+
+public int getRecordID() { return recordID; }
+public void setRecordID(int recordID) { this.recordID = recordID; }
+
+public int getEmployeeID() { return employeeID; }
+public void setEmployeeID(int employeeID) { this.employeeID = employeeID; }
+
+public LocalDate getRecordDate() { return recordDate; }
+public void setRecordDate(LocalDate recordDate) { this.recordDate = recordDate; }
+
+public String getDescription() { return description; }
+public void setDescription(String description) { this.description = description; }
+
+public double getAmount() { return amount; }
+public void setAmount(double amount) { this.amount = amount; }
+
+public String getRecordType() { return recordType; }
+public void setRecordType(String recordType) { this.recordType = recordType; }
+}
+
+Payroll.java
+package payxpert;
+import java.time.LocalDate;
+public class Payroll {
+private int payrollID;
+private int employeeID;
+private LocalDate payPeriodStartDate;
+private LocalDate payPeriodEndDate;
+private double basicSalary;
+private double overtimePay;
+private double deductions;
+private double netSalary;
+
+public Payroll() {}
+
+public Payroll(int payrollID, int employeeID, LocalDate payPeriodStartDate, LocalDate payPeriodEndDate,
+double basicSalary, double overtimePay, double deductions, double netSalary) {
+this.payrollID = payrollID;
+this.employeeID = employeeID;
+this.payPeriodStartDate = payPeriodStartDate;
+this.payPeriodEndDate = payPeriodEndDate;
+this.basicSalary = basicSalary;
+this.overtimePay = overtimePay;
+this.deductions = deductions;
+this.netSalary = netSalary;
+}
+
+public int getPayrollID() { return payrollID; }
+public void setPayrollID(int payrollID) { this.payrollID = payrollID; }
+
+public int getEmployeeID() { return employeeID; }
+public void setEmployeeID(int employeeID) { this.employeeID = employeeID; }
+
+public LocalDate getPayPeriodStartDate() { return payPeriodStartDate; }
+public void setPayPeriodStartDate(LocalDate payPeriodStartDate) { this.payPeriodStartDate = payPeriodStartDate; }
+
+public LocalDate getPayPeriodEndDate() { return payPeriodEndDate; }
+public void setPayPeriodEndDate(LocalDate payPeriodEndDate) { this.payPeriodEndDate = payPeriodEndDate; }
+
+public double getBasicSalary() { return basicSalary; }
+public void setBasicSalary(double basicSalary) { this.basicSalary = basicSalary; }
+
+public double getOvertimePay() { return overtimePay; }
+public void setOvertimePay(double overtimePay) { this.overtimePay = overtimePay; }
+
+public double getDeductions() { return deductions; }
+public void setDeductions(double deductions) { this.deductions = deductions; }
+
+public double getNetSalary() { return netSalary; }
+public void setNetSalary(double netSalary) { this.netSalary = netSalary; }
+}
+
+Tax.java
+package payxpert;
+public class Tax {
+private int taxID;
+private int employeeID;
+private int taxYear;
+private double taxableIncome;
+private double taxAmount;
+
+public Tax() {}
+
+public Tax(int taxID, int employeeID, int taxYear, double taxableIncome, double taxAmount) {
+this.taxID = taxID;
+this.employeeID = employeeID;
+this.taxYear = taxYear;
+this.taxableIncome = taxableIncome;
+this.taxAmount = taxAmount;
+}
+
+public int getTaxID() { return taxID; }
+public void setTaxID(int taxID) { this.taxID = taxID; }
+
+public int getEmployeeID() { return employeeID; }
+public void setEmployeeID(int employeeID) { this.employeeID = employeeID; }
+
+public int getTaxYear() { return taxYear; }
+public void setTaxYear(int taxYear) { this.taxYear = taxYear; }
+
+public double getTaxableIncome() { return taxableIncome; }
+public void setTaxableIncome(double taxableIncome) { this.taxableIncome = taxableIncome; }
+
+public double getTaxAmount() { return taxAmount; }
+public void setTaxAmount(double taxAmount) { this.taxAmount = taxAmount; }
+}
+
+Package = payxpert2
+EmployeeService.java
+package payxpert2;
+import payxpert.Employee;
+public class EmployeeService implements IEmployeeService {
+private Employee employee;
+
+public Employee getEmployeeById(int employeeId) {
+if (employee != null && employee.getEmployeeID() == employeeId) return employee;
+return null;
+}
+
+public Employee getAllEmployees() {
+return employee; // Single record logic
+}
+
+public void addEmployee(Employee employeeData) {
+this.employee = employeeData;
+}
+
+public void updateEmployee(Employee employeeData) {
+if (employee != null && employee.getEmployeeID() == employeeData.getEmployeeID()) {
+this.employee = employeeData;
+}
+}
+
+public void removeEmployee(int employeeId) {
+if (employee != null && employee.getEmployeeID() == employeeId) {
+employee = null;
+}
+}
+}
+
+FinancialRecordService.java
+package payxpert2;
+import payxpert.FinancialRecord;
+import java.time.LocalDate;
+
+public class FinancialRecordService implements IFinancialRecordService {
+private FinancialRecord record;
+
+public void addFinancialRecord(int employeeId, String description, double amount, String recordType) {
+record = new FinancialRecord(1, employeeId, LocalDate.now(), description, amount, recordType);
+}
+
+public FinancialRecord getFinancialRecordById(int recordId) {
+if (record != null && record.getRecordID() == recordId) return record;
+return null;
+}
+
+public FinancialRecord getFinancialRecordsForEmployee(int employeeId) {
+if (record != null && record.getEmployeeID() == employeeId) return record;
+return null;
+}
+
+public FinancialRecord getFinancialRecordsForDate(LocalDate recordDate) {
+if (record != null && record.getRecordDate().equals(recordDate)) return record;
+return null;
+}
+}
+
+IEmployeeService.java
+package payxpert2;
+import payxpert.Employee;
+public interface IEmployeeService {
+Employee getEmployeeById(int employeeId);
+Employee getAllEmployees();
+void addEmployee(Employee employeeData);
+void updateEmployee(Employee employeeData);
+void removeEmployee(int employeeId);
+}
+
+IFinancialRecordService.java
+package payxpert2;
+import payxpert.FinancialRecord;
+import java.time.LocalDate;
+
+public interface IFinancialRecordService {
+void addFinancialRecord(int employeeId, String description, double amount, String recordType);
+FinancialRecord getFinancialRecordById(int recordId);
+FinancialRecord getFinancialRecordsForEmployee(int employeeId);
+FinancialRecord getFinancialRecordsForDate(LocalDate recordDate);
+}
+
+IPayrollService.java
+package payxpert2;
+import payxpert.Payroll;
+import java.time.LocalDate;
+public interface IPayrollService {
+void generatePayroll(int employeeId, LocalDate startDate, LocalDate endDate);
+Payroll getPayrollById(int payrollId);
+Payroll getPayrollsForEmployee(int employeeId);
+Payroll getPayrollsForPeriod(LocalDate startDate, LocalDate endDate);
+}
+
+ITaxService.java
+package payxpert2;
+import payxpert.Tax;
+public interface ITaxService {
+void calculateTax(int employeeId, int taxYear);
+Tax getTaxById(int taxId);
+Tax getTaxesForEmployee(int employeeId);
+Tax getTaxesForYear(int taxYear);
+}
+
+PayrollService.java
+package payxpert2;
+import payxpert.Payroll;
+import java.time.LocalDate;
+public class PayrollService implements IPayrollService {
+private Payroll payroll;
+
+public void generatePayroll(int employeeId, LocalDate startDate, LocalDate endDate) {
+payroll = new Payroll(1, employeeId, startDate, endDate, 50000, 5000, 2000, 53000);
+}
+
+public Payroll getPayrollById(int payrollId) {
+if (payroll != null && payroll.getPayrollID() == payrollId) return payroll;
+return null;
+}
+
+public Payroll getPayrollsForEmployee(int employeeId) {
+if (payroll != null && payroll.getEmployeeID() == employeeId) return payroll;
+return null;
+}
+
+public Payroll getPayrollsForPeriod(LocalDate startDate, LocalDate endDate) {
+if (payroll != null &&
+!payroll.getPayPeriodEndDate().isBefore(startDate) &&
+!payroll.getPayPeriodStartDate().isAfter(endDate)) {
+return payroll;
+}
+return null;
+}
+}
+
+TaxService.java
+package payxpert2;
+import payxpert.Tax;
+public class TaxService implements ITaxService {
+private Tax tax;
+
+public void calculateTax(int employeeId, int taxYear) {
+double income = 60000; // example
+double amount = income * 0.10;
+tax = new Tax(1, employeeId, taxYear, income, amount);
+}
+
+public Tax getTaxById(int taxId) {
+if (tax != null && tax.getTaxID() == taxId) return tax;
+return null;
+}
+
+public Tax getTaxesForEmployee(int employeeId) {
+if (tax != null && tax.getEmployeeID() == employeeId) return tax;
+return null;
+}
+
+public Tax getTaxesForYear(int taxYear) {
+if (tax != null && tax.getTaxYear() == taxYear) return tax;
+return null;
+}
+}
+
+Package=util
+ReportGenerator.java
+package util;
+import payxpert.*;
+
+public class ReportGenerator {
+public static void printEmployee(Employee e) {
+if (e != null) {
+System.out.println("Employee: " + e.getEmployeeID() + " - " + e.getFirstName() + " " + e.getLastName());
+}
+}
+
+public static void printPayroll(Payroll p) {
+if (p != null) {
+System.out.println("Payroll: ID=" + p.getPayrollID() + " | Net Salary=" + p.getNetSalary());
+}
+}
+
+public static void printTax(Tax t) {
+if (t != null) {
+System.out.println("Tax: ID=" + t.getTaxID() + " | Amount=" + t.getTaxAmount());
+}
+}
+
+public static void printFinancialRecord(FinancialRecord r) {
+if (r != null) {
+System.out.println("Record: ID=" + r.getRecordID() + " | Type=" + r.getRecordType() + " | Amount=" + r.getAmount());
+}
+}
+}
+
+ValidationService.java
+package util;
+public class ValidationService {
+public static boolean isValidEmail(String email) {
+return email != null && email.contains("@") && email.contains(".");
+}
+
+public static boolean isValidPhoneNumber(String phone) {
+return phone != null && phone.matches("\\d{10}");
+}
+
+public static boolean isNonEmpty(String value) {
+return value != null && !value.trim().isEmpty();
+}
+}
+
+db
+
+package sample;
+import java.math.BigDecimal;
+import java.sql.*;
+public class jdbc {
+
+public static void main (String [] args) throws ClassNotFoundException, SQLException
+{
+// TODO Auto-generated method stub
+Class.forName("com.mysql.cj.jdbc.Driver");
+
+try (Connection conn = DriverManager.getConnection(
+"jdbc:mysql://localhost:3306/payxpert", "root", "Sus2716@");
+
+Statement stmt = conn.createStatement())
+{
+
+String insertQuery = "INSERT INTO tax (EmployeeID, TaxYear, TaxableIncome, TaxAmount) VALUES (?, ?, ?, ?)";
+try (PreparedStatement pstmt = conn.prepareStatement(insertQuery)) {
+pstmt.setInt(1, 2716);
+pstmt.setInt(2, 2025);
+pstmt.setBigDecimal(3, BigDecimal.valueOf(567.00));
+pstmt.setBigDecimal(4, BigDecimal.valueOf(567.00));
+pstmt.executeUpdate();
+System.out.println("User inserted.");
+}
+
+
+
+String deleteQuery = "DELETE FROM Tax WHERE EmployeeID = ?";
+try (PreparedStatement pstmt = conn.prepareStatement(deleteQuery)) {
+pstmt.setInt(1, 5);
+pstmt.executeUpdate();
+System.out.println("User deleted.");
+}
+
+
+
+// SELECT
+ResultSet rs = stmt.executeQuery("SELECT * FROM tax");
+while (rs.next()) {
+System.out.println(rs.getInt("TaxID") + " | " +
+rs.getInt("EmployeeID") + " | " +
+rs.getInt("TaxYear") + " | " +
+rs.getBigDecimal("TaxableIncome") + " | " +
+rs.getBigDecimal("TaxAmount"));
+}
+}
+}
+
+}
+
